@@ -138,6 +138,24 @@
 	        correctLevel : QRCode.CorrectLevel.H,
             useSVG: true
         });
+
+        function scaleCard() {
+            const card = document.getElementsByClassName('cardbody')[0];
+            const wWidth = window.innerWidth;
+            const wHeight = window.innerHeight;
+            // const scale_x = (card.offsetWidth + card.offsetLeft) / wWidth;
+            // const scale_y = (card.offsetHeight + card.offsetTop) / wHeight;
+            const scale_x = wWidth / (card.offsetWidth + card.offsetLeft);
+            const scale_y = wHeight / (card.offsetHeight + card.offsetTop);
+            const scale = Math.min(scale_x, scale_y);
+            card.style.transformOrigin = `0 0`;
+            card.style.transform = `scale(${scale})`;
+        }
+
+        window.addEventListener("resize", (event) => {
+            scaleCard();
+        });
+        scaleCard();
     </script>
 </footer>
 </html>
